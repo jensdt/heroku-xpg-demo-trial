@@ -36,7 +36,7 @@ public class HelloHerokuTest {
         try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
             String response = EntityUtils.toString(client.execute(new HttpGet("http://" + helloHeroku.listenerHost() + ":" + helloHeroku.listenerPort())).getEntity(), "UTF-8");
 
-            assertEquals("Hello World", response);
+            assertEquals("Hello Xplore", response);
         }
 
 
