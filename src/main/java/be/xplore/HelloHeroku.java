@@ -6,22 +6,24 @@ import io.undertow.util.Headers;
 public class HelloHeroku {
 
     public static void main(String[] args) {
-
-        Undertow server = Undertow.builder()
-                .addHttpListener(port(), "0.0.0.0")
-                .setHandler(exchange -> {
-                    System.getenv().forEach((String k, String v) -> System.out.println(k + "=" + v));
-                    System.out.println("Incoming request for " + exchange.getRequestPath());
-                    exchange.getResponseHeaders().put(Headers.CONTENT_TYPE, "text/plain");
-                    exchange.getResponseSender().send("Hello Xplore");
-                }).build();
-
+        Undertow server = new HelloHeroku().createServer();
         server.start();
 
         System.out.println("Started server at http://127.1:8080/  Hit ^C to stop");
     }
 
-    private static int port() {
+    protected Undertow createServer() {
+        return Undertow.builder()
+                    .addHttpListener(port(), "0.0.0.0")
+                    .setHandler(exchange -> {
+                        System.out.println("Incoming request for " + exchange.getRequestPath());
+                        exchange.getResponseHeaders().put(Headers.CONTENT_TYPE, "text/plain");
+                        exchange.getResponseSender().send("Hello Xplore");
+                    }).build();
+    }
+
+
+    private int port() {
         String envPort = System.getenv("PORT");
 
         if (envPort == null) {
