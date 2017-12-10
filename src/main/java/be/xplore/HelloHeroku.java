@@ -10,6 +10,7 @@ public class HelloHeroku {
         Undertow server = Undertow.builder()
                 .addHttpListener(port(), "0.0.0.0")
                 .setHandler(exchange -> {
+                    System.out.println("Incoming request!");
                     exchange.getResponseHeaders().put(Headers.CONTENT_TYPE, "text/plain");
                     exchange.getResponseSender().send("Hello World");
                 }).build();
