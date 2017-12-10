@@ -17,9 +17,12 @@ import static org.junit.Assert.assertEquals;
 public class HelloHerokuTest {
 
     private Undertow server;
+    private HelloHeroku helloHeroku;
+
     @Before
     public void setup() {
-        server = new HelloHeroku().createServer();
+        helloHeroku = new HelloHeroku();
+        server = helloHeroku.createServer();
         server.start();
     }
 
@@ -31,7 +34,7 @@ public class HelloHerokuTest {
     @Test
     public void testRoot() throws IOException {
         try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
-            String response = EntityUtils.toString(client.execute(new HttpGet("http://localhost:8080/")).getEntity(), "UTF-8");
+            String response = EntityUtils.toString(client.execute(new HttpGet("http://" + helloHeroku.listenerHost() + ":" + helloHeroku.listenerPort())).getEntity(), "UTF-8");
 
             assertEquals("Hello World", response);
         }

@@ -14,7 +14,7 @@ public class HelloHeroku {
 
     protected Undertow createServer() {
         return Undertow.builder()
-                    .addHttpListener(port(), "0.0.0.0")
+                    .addHttpListener(listenerPort(), listenerHost())
                     .setHandler(exchange -> {
                         System.out.println("Incoming request for " + exchange.getRequestPath());
                         
@@ -23,8 +23,11 @@ public class HelloHeroku {
                     }).build();
     }
 
+    protected String listenerHost() {
+        return "0.0.0.0";
+    }
 
-    private int port() {
+    protected int listenerPort() {
         String envPort = System.getenv("PORT");
 
         if (envPort == null) {
