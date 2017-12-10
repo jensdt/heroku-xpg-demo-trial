@@ -21,7 +21,7 @@ public class HelloHeroku {
                         exchange.getResponseHeaders().put(Headers.CONTENT_TYPE, "text/plain");
 
                         if ("/example".equals(exchange.getRequestPath())) {
-                            exchange.getResponseSender().send("This example is nice");
+                            exchange.getResponseSender().send("This example is awesome");
                         } else {
                             exchange.getResponseSender().send("Hello Xplore");
                         }
