@@ -12,7 +12,7 @@ public class HelloHeroku {
                 .setHandler(exchange -> {
                     System.out.println("Incoming request for " + exchange.getRequestPath());
                     exchange.getResponseHeaders().put(Headers.CONTENT_TYPE, "text/plain");
-                    exchange.getResponseSender().send("Hello World");
+                    exchange.getResponseSender().send("Hello Xplore");
                 }).build();
 
         server.start();
