@@ -1,1 +1,1 @@
-web: java -jar target/heroku-hello-world*.jar
+web: java -jar target/heroku-hello-world*-jar-with-dependencies.jar
