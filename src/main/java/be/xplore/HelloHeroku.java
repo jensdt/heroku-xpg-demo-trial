@@ -17,6 +17,7 @@ public class HelloHeroku {
                     .addHttpListener(port(), "0.0.0.0")
                     .setHandler(exchange -> {
                         System.out.println("Incoming request for " + exchange.getRequestPath());
+                        
                         exchange.getResponseHeaders().put(Headers.CONTENT_TYPE, "text/plain");
                         exchange.getResponseSender().send("Hello Xplore");
                     }).build();
