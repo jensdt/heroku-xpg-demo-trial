@@ -33,7 +33,7 @@ public class HelloHerokuTest {
         try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
             String response = EntityUtils.toString(client.execute(new HttpGet("http://localhost:8080/")).getEntity(), "UTF-8");
 
-            assertEquals("Hello Xplore", response);
+            assertEquals("Hello World", response);
         }
 
 
